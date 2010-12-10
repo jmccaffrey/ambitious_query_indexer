@@ -9,8 +9,6 @@ class AssociationTest < ActiveSupport::TestCase
   end
   
   test "it can create an instance of the associating class" do
-    setup
-    
     model_instance = @association.send(:model_instance)
     
     assert_not_nil model_instance.id
@@ -18,8 +16,6 @@ class AssociationTest < ActiveSupport::TestCase
   end
   
   test "it can create an instance of the associated class" do
-    setup
-
     association_instance = @association.send(:association_instance)
 
     assert_not_nil association_instance.id
@@ -27,8 +23,6 @@ class AssociationTest < ActiveSupport::TestCase
   end
   
   test "it can associate instances" do
-    setup
-    
     @association.send(:associate_instances)
     
     foreign_key = @association.send(:reflection).send(:association_foreign_key)
