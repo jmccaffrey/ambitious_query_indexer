@@ -24,10 +24,10 @@ class String
   end
   
   def is_rails_model?
-    # return false unless self =~ /\.rb$/
+    name = self.as_rails_model
     begin
-      self.as_rails_model.constantize < ActiveRecord::Base
-    rescue NameError
+      Object.const_defined?(name.to_sym) ?  Object.const_get(name) < ActiveRecord::Base  :  false
+    rescue
       false
     end
   end
