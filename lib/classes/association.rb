@@ -34,7 +34,7 @@ class Association
   end
   
   def generate_instance(model_name)
-    model = model_name.constantize
+    model = Object.const_get(model_name.singularize.to_sym)
     
     instance = model.new
     instance.save_with_validation(false)
