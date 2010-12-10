@@ -29,6 +29,7 @@ class ObjectCall
     
     self.instantiators = scan_results.inject([]) do |acc, scan_result|
       next unless scan_result[0].is_rails_model?
+      acc ||= []
       acc << ObjectCall.new(self.source_file, :object => scan_result[0], :method => scan_result[1], :params => scan_result[2])
     end
   end
